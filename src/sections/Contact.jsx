@@ -1,21 +1,20 @@
 import React from 'react';
-import SectionHeading from '../components/SectionHeading';
-import ContactForm from '../components/ContactForm';
 import { profileData } from '../data/profile';
-import { Mail, ArrowUpRight, MapPin } from 'lucide-react';
+import ContactForm from '../components/ContactForm';
+import { ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/Icons';
 
 export default function Contact() {
-  const directChannels = [
+  const channels = [
     {
-      label: "DIRECT EMAIL",
+      label: "EMAIL",
       value: profileData.email,
       href: `mailto:${profileData.email}`,
-      note: "Primary communication channel"
+      note: "Direct communication"
     },
     {
       label: "LINKEDIN",
-      value: "ahammed-najad-kk",
+      value: "ahammed-najad-kk-786538365",
       href: profileData.linkedin,
       note: "Professional network"
     },
@@ -27,53 +26,59 @@ export default function Contact() {
     },
     {
       label: "LOCATION",
-      value: profileData.fullLocation,
+      value: profileData.location,
       href: null,
       note: "Kerala, India (UTC +5:30)"
     }
   ];
 
   return (
-    <section id="contact" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="contact" className="py-24 sm:py-32 lg:py-36">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
         
-        {/* Section Identifier */}
-        <SectionHeading
-          number="06"
-          category="CONTACT"
-          title="Have a project or an opportunity in mind?"
-          description="Let's discuss how technology can turn your ideas into practical digital solutions."
-        />
+        {/* Small Label Identifier */}
+        <div className="flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#70736D] dark:text-[#A0A49D] mb-12 sm:mb-16">
+          <span>{profileData.contact.label}</span>
+          <span className="w-8 h-[1px] bg-[#DDDED8] dark:bg-[#30362F]"></span>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* Large Closing Statement */}
+        <div className="max-w-4xl mb-16 sm:mb-24 space-y-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-[1.08] text-balance">
+            {profileData.contact.statement}
+          </h2>
+          <p className="text-base sm:text-lg text-[#70736D] dark:text-[#A0A49D] leading-relaxed max-w-2xl font-normal">
+            {profileData.contact.subtext}
+          </p>
+        </div>
+
+        {/* Contact Layout: Channels & Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          {/* Left Column: Direct Inquiries & Links (5 cols) */}
+          {/* Direct Channels (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="space-y-4">
-              {directChannels.map((channel, idx) => (
-                <div 
-                  key={idx}
-                  className="p-5 rounded-xl bg-[#101412] border border-[#1C2420] hover:border-[#28362F] transition-all flex items-center justify-between group"
-                >
-                  <div className="space-y-1 min-w-0 pr-2">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#5A635E] block">
-                      {channel.label}
+            <div className="divide-y divide-[#DDDED8] dark:divide-[#30362F] border-y border-[#DDDED8] dark:border-[#30362F]">
+              {channels.map((ch, idx) => (
+                <div key={idx} className="py-5 flex items-baseline justify-between gap-4 group">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#70736D] dark:text-[#A0A49D] block">
+                      {ch.label}
                     </span>
-                    <p className="text-xs sm:text-sm font-semibold text-[#EDEDEA] truncate">
-                      {channel.value}
-                    </p>
-                    <p className="text-[11px] text-[#8E9892]">
-                      {channel.note}
-                    </p>
+                    <span className="text-sm font-mono font-medium text-[#171916] dark:text-[#F2F2EC] block">
+                      {ch.value}
+                    </span>
+                    <span className="text-xs text-[#70736D] dark:text-[#A0A49D] block">
+                      {ch.note}
+                    </span>
                   </div>
 
-                  {channel.href && (
+                  {ch.href && (
                     <a
-                      href={channel.href}
-                      target={channel.href.startsWith('mailto') ? '_self' : '_blank'}
+                      href={ch.href}
+                      target={ch.href.startsWith('mailto') ? '_self' : '_blank'}
                       rel="noopener noreferrer"
-                      className="p-2 rounded bg-[#080A09] border border-[#1C2420] text-[#8E9892] group-hover:text-[#24D18A] group-hover:border-[#24D18A] transition-colors flex-shrink-0"
-                      aria-label={channel.label}
+                      className="p-1.5 rounded text-[#70736D] dark:text-[#A0A49D] group-hover:text-[#171916] dark:group-hover:text-[#F2F2EC] transition-colors"
+                      aria-label={ch.label}
                     >
                       <ArrowUpRight className="w-4 h-4" />
                     </a>
@@ -82,15 +87,15 @@ export default function Contact() {
               ))}
             </div>
 
-            <div className="p-5 rounded-xl bg-[#080A09] border border-[#1C2420] text-xs font-mono text-[#8E9892] space-y-1">
-              <span className="text-[#EDEDEA] font-semibold block uppercase">AVAILABILITY</span>
+            <div className="p-4 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] text-xs font-mono text-[#70736D] dark:text-[#A0A49D] space-y-1">
+              <span className="text-[#171916] dark:text-[#F2F2EC] font-semibold block uppercase">COMMUNICATION STANDARD</span>
               <p className="leading-relaxed">
-                Available for full-time junior developer positions, contract development, and select freelance web applications.
+                Prompt response guaranteed within 24 business hours for serious technical inquiries and team discussions.
               </p>
             </div>
           </div>
 
-          {/* Right Column: Contact Form (7 cols) */}
+          {/* Contact Form (7 cols) */}
           <div className="lg:col-span-7">
             <ContactForm />
           </div>

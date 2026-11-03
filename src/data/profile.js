@@ -1,64 +1,73 @@
 export const profileData = {
-  name: "Ahammed Najad KK",
+  name: "AHAMMED NAJAD KK",
   shortName: "Najad",
-  initials: "AN",
-  label: "SOFTWARE DEVELOPER / MERN STACK",
   title: "Junior Software Developer | MERN Stack Developer",
-  status: "Available for Opportunities",
-  location: "Kerala, India",
-  fullLocation: "Manjeri, Malappuram, Kerala, India",
-  currentRole: "Junior Software Developer at Kod Brand",
-  focus: "Full-Stack Development",
+  roleTitle: "Junior Software Developer at Kod Brand",
+  location: "Malappuram, Kerala, India",
   email: "najadahammed34@gmail.com",
   github: "https://github.com/AHAMMEDNAJADKK",
   linkedin: "https://www.linkedin.com/in/ahammed-najad-kk-786538365/",
   resumePath: "/resume/Ahammed-Najad-KK-Resume.pdf",
   profileImage: "/images/profile.jpg",
-  
+
   hero: {
-    label: "SOFTWARE DEVELOPER / MERN STACK",
-    headlineLine1: "Building digital products.",
-    headlineLine2: "Solving real problems.",
-    subHeadline: "Junior Software Developer specializing in full-stack MERN architecture, responsive web applications, and business CRM systems.",
-    description: "I build responsive frontend interfaces, design reliable REST APIs, and manage production databases to transform real-world business requirements into practical digital solutions.",
+    label: "FULL-STACK DEVELOPER / MERN STACK",
+    headlineLine1: "Engineering digital",
+    headlineLine2: "solutions for real-world",
+    headlineLine3: "problems.",
+    introduction: "I am a MERN Stack Developer and Junior Software Developer at Kod Brand, working across frontend and backend development to build business-focused web applications, CRM systems and practical digital solutions.",
+    actions: {
+      primary: "Explore Selected Work",
+      secondary: "Contact Me"
+    },
     infoStrip: [
-      { label: "Location", value: "Kerala, India" },
-      { label: "Current Role", value: "Junior Software Developer at Kod Brand" },
-      { label: "Main Focus", value: "Full-Stack Development" }
+      { label: "LOCATION", value: "MALAPPURAM, KERALA, INDIA" },
+      { label: "ROLE", value: "JUNIOR SOFTWARE DEVELOPER" },
+      { label: "FOCUS", value: "FULL-STACK DEVELOPMENT" },
+      { label: "STACK", value: "REACT / NODE / MONGODB" }
     ]
   },
 
   about: {
-    statement: "I build software that solves practical business problems.",
-    paragraphs: [
-      "I work across the full software lifecycle—from conceptualizing responsive, intuitive React user interfaces to engineering robust Express and Node.js REST APIs and managing MongoDB databases.",
-      "My day-to-day work spans developing new applications and modules from scratch, refactoring existing codebases, and collaborating with clients to understand their operational bottlenecks. Whether architecting multi-branch CRM pipelines, creating automated financial receipt ledgers, or resolving production issues, I focus on delivering clean, maintainable software grounded in business reality."
+    label: "01 / ABOUT",
+    statement: "From understanding business needs to developing complete digital solutions.",
+    biography: [
+      "I began my formal engineering journey with an intensive MERN Stack development course at Kod Brand Academy, mastering modern JavaScript, React paradigms, Express server architecture, and MongoDB database design. Following this foundational training, I completed a rigorous four-month internship at Kod Brand, gaining direct exposure to production environments, agile sprints, and collaborative codebases.",
+      "Currently serving as a Junior Software Developer at Kod Brand (since August 2026), I work across both frontend and backend development. My day-to-day responsibilities encompass building new applications and operational modules from scratch, refactoring and optimizing existing production systems, and engineering reliable REST APIs.",
+      "A core part of my role involves direct client communication to understand real-world business bottlenecks and transform operational requirements into functional digital workflows. Additionally, I handle database schema design, frontend and backend debugging, cloud deployments, and production issue resolution.",
+      "Beyond technical execution, I am deeply invested in building practical, high-utility business software—applications that automate redundant workflows, safeguard critical records, and provide clear operational visibility for growing organizations."
     ],
-    pillars: [
-      {
-        title: "Frontend Development",
-        detail: "Building component-driven user interfaces in React.js and Tailwind CSS with clean state management, accessible layouts, and responsive cross-device fidelity."
-      },
-      {
-        title: "Backend Architecture",
-        detail: "Designing structured Express.js and Node.js server architectures with modular route controllers, secure JWT authentication, and custom validation middleware."
-      },
-      {
-        title: "API Development",
-        detail: "Engineering RESTful endpoints with consistent request-response contracts, robust error handling, and security protections for business operations."
-      },
-      {
-        title: "Database Management",
-        detail: "Designing normalized and hybrid MongoDB schemas via Mongoose, optimizing aggregations, and maintaining data integrity across relational references."
-      },
-      {
-        title: "CRM Systems",
-        detail: "Translating multi-department operations into role-based workflows, lead tracking pipelines, automated shift reports, and financial reconciliation tools."
-      },
-      {
-        title: "Client Requirements & Support",
-        detail: "Communicating directly with clients to map business logic into software specifications, with continuous deployment and prompt production debugging."
-      }
+    technicalHighlights: [
+      { label: "Current Employment", value: "Junior Software Developer — Kod Brand" },
+      { label: "Training Background", value: "MERN Stack Course — Kod Brand Academy" },
+      { label: "Internship Duration", value: "4 Months — Kod Brand" },
+      { label: "Primary Architecture", value: "MERN (MongoDB, Express, React, Node)" }
     ]
+  },
+
+  experience: {
+    label: "02 / EXPERIENCE",
+    headline: "Professional Record"
+  },
+
+  skills: {
+    label: "03 / EXPERTISE",
+    headline: "Engineering Capability Index"
+  },
+
+  projects: {
+    label: "04 / SELECTED WORK",
+    headline: "Selected Engineering Work"
+  },
+
+  approach: {
+    label: "05 / PROCESS",
+    headline: "Engineering Methodology"
+  },
+
+  contact: {
+    label: "06 / CONTACT",
+    statement: "Let's build something meaningful.",
+    subtext: "Open to software development opportunities, remote roles and freelance collaborations."
   }
 };

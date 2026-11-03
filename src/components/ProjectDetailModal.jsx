@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ExternalLink, ArrowUpRight, CheckCircle2, Shield, Layers, Database, Cpu, AlertCircle, Wrench, Check } from 'lucide-react';
+import { X, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
 export default function ProjectDetailModal({ project, onClose }) {
@@ -17,64 +17,60 @@ export default function ProjectDetailModal({ project, onClose }) {
   }, [onClose]);
 
   if (!project) return null;
+  const cs = project.caseStudy;
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/70 backdrop-blur-sm overflow-y-auto animate-fade-in"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-[#0D110F] border border-[#1C2420] rounded-2xl shadow-2xl overflow-hidden my-auto"
+        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-[#F5F4F0] dark:bg-[#111311] border border-[#DDDED8] dark:border-[#30362F] rounded-lg shadow-2xl overflow-hidden my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Sticky Header */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-6 sm:px-8 py-4 bg-[#0D110F]/95 backdrop-blur border-b border-[#1C2420]">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-bold text-[#24D18A]">
-              {project.number}
-            </span>
-            <span className="text-xs text-[#5A635E]">/</span>
-            <span className="text-xs font-mono uppercase tracking-wider text-[#8E9892]">
-              {project.category}
-            </span>
-            <span className="hidden sm:inline-block text-xs text-[#5A635E]">&bull;</span>
-            <span className="hidden sm:inline-block text-xs font-mono text-[#5A635E]">
-              {project.ownership}
-            </span>
+        <div className="sticky top-0 z-20 flex items-center justify-between px-6 sm:px-8 py-4 bg-[#F5F4F0]/95 dark:bg-[#111311]/95 backdrop-blur-sm border-b border-[#DDDED8] dark:border-[#30362F]">
+          <div className="flex items-center gap-3 text-xs font-mono">
+            <span className="font-bold text-[#315C45] dark:text-[#83A88B]">PROJECT {project.number}</span>
+            <span className="text-[#DDDED8] dark:text-[#30362F]">/</span>
+            <span className="text-[#70736D] dark:text-[#A0A49D] uppercase tracking-wider">{project.name}</span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded text-[#8E9892] hover:text-[#EDEDEA] hover:bg-[#141A17] transition-colors"
-            aria-label="Close case study"
+            className="p-1 rounded text-[#70736D] dark:text-[#A0A49D] hover:text-[#171916] dark:hover:text-[#F2F2EC] transition-colors"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Scrollable Content Body */}
-        <div className="overflow-y-auto p-6 sm:p-10 space-y-10 text-[#EDEDEA]">
+        {/* Case Study Body */}
+        <div className="overflow-y-auto p-6 sm:p-10 lg:p-12 space-y-12 text-[#171916] dark:text-[#F2F2EC]">
           
-          {/* Hero Header */}
+          {/* Header Overview */}
           <div className="space-y-4">
-            <h2 className="text-2xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#EDEDEA] leading-tight">
-              {project.title}
+            <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#315C45] dark:text-[#83A88B] block">
+              {project.category}
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-tight">
+              {project.name} — {project.subtitle}
             </h2>
-            <p className="text-sm sm:text-base text-[#8E9892] leading-relaxed max-w-3xl">
-              {project.subtitle}
+            <p className="text-sm sm:text-base text-[#70736D] dark:text-[#A0A49D] leading-relaxed max-w-3xl">
+              {cs.introduction}
             </p>
 
-            {/* Quick Actions & Meta */}
+            {/* Quick Links */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded bg-[#141A17] border border-[#1C2420] hover:border-[#24D18A] text-xs font-mono uppercase tracking-wider text-[#EDEDEA] transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] text-xs font-mono uppercase tracking-wider text-[#171916] dark:text-[#F2F2EC] hover:border-[#171916] dark:hover:border-[#F2F2EC] transition-colors"
                 >
-                  <GithubIcon className="w-4 h-4 text-[#24D18A]" />
-                  <span>GitHub Repository</span>
+                  <GithubIcon className="w-3.5 h-3.5" />
+                  <span>Repository</span>
                 </a>
               )}
               {project.liveUrl && (
@@ -82,136 +78,141 @@ export default function ProjectDetailModal({ project, onClose }) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded bg-[#EDEDEA] text-[#080A09] text-xs font-mono uppercase tracking-wider font-semibold hover:bg-white transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded bg-[#171916] text-[#F5F4F0] dark:bg-[#F2F2EC] dark:text-[#111311] text-xs font-mono uppercase tracking-wider font-semibold hover:opacity-90 transition-opacity"
                 >
                   <span>Live Website</span>
-                  <ArrowUpRight className="w-4 h-4" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               )}
-              <span className="text-xs font-mono text-[#5A635E]">
-                STATUS: <span className="text-[#24D18A]">{project.completionStatus}</span>
-              </span>
             </div>
           </div>
 
-          {/* Screenshot Preview */}
-          {project.image && (
-            <div className="rounded-xl overflow-hidden border border-[#1C2420] bg-[#080A09]">
+          {/* 08 — Actual Screenshot or Visual Representation */}
+          {project.image ? (
+            <div className="rounded border border-[#DDDED8] dark:border-[#30362F] p-2 bg-white dark:bg-[#191D19]">
+              <div className="text-[10px] font-mono text-[#70736D] dark:text-[#A0A49D] px-2 py-1 mb-1 border-b border-[#DDDED8] dark:border-[#30362F] flex justify-between">
+                <span>08 — ACTUAL INTERFACE SCREENSHOT</span>
+                <span>VERIFIED PRODUCTION UI</span>
+              </div>
               <img 
                 src={project.image} 
-                alt={`${project.title} detailed preview`}
-                className="w-full max-h-[420px] object-cover object-top"
+                alt={`${project.name} interface view`} 
+                className="w-full max-h-[440px] object-cover object-top rounded-sm"
               />
+            </div>
+          ) : (
+            <div className="p-6 rounded border border-[#DDDED8] dark:border-[#30362F] bg-white dark:bg-[#191D19] space-y-2">
+              <span className="text-[10px] font-mono text-[#70736D] dark:text-[#A0A49D] block">
+                08 — SCREENSHOT NOTICE
+              </span>
+              <p className="text-xs text-[#70736D] dark:text-[#A0A49D]">
+                Actual application interface operates within internal client networks. Architecture, models, and workflows verified directly from codebase repository.
+              </p>
             </div>
           )}
 
-          {/* Overview, Problem & Solution */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-xl bg-[#101412] border border-[#1C2420] space-y-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#24D18A] block">
-                THE BUSINESS PROBLEM
+          {/* 02 & 03: Business Context & Problem */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-[#DDDED8] dark:border-[#30362F]">
+            <div className="space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+                02 / BUSINESS CONTEXT
               </span>
-              <p className="text-xs sm:text-sm text-[#8E9892] leading-relaxed">
-                {project.businessProblem}
+              <p className="text-xs sm:text-sm text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+                {cs.businessContext}
               </p>
             </div>
 
-            <div className="p-6 rounded-xl bg-[#101412] border border-[#1C2420] space-y-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#24D18A] block">
-                SOLUTION PROVIDED
+            <div className="space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+                03 / PROBLEM
               </span>
-              <p className="text-xs sm:text-sm text-[#8E9892] leading-relaxed">
-                {project.solutionProvided}
+              <p className="text-xs sm:text-sm text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+                {cs.problem}
               </p>
             </div>
           </div>
 
-          {/* Role & Contribution */}
-          <div className="p-6 rounded-xl bg-[#101412] border border-[#1C2420] space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#24D18A] block">
-              MY ROLE & TECHNICAL OWNERSHIP
-            </span>
-            <p className="text-xs sm:text-sm text-[#EDEDEA] leading-relaxed">
-              {project.roleAndContribution}
-            </p>
+          {/* 04 & 05: Solution & My Contribution */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-[#DDDED8] dark:border-[#30362F]">
+            <div className="space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+                04 / SOLUTION PROVIDED
+              </span>
+              <p className="text-xs sm:text-sm text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+                {cs.solution}
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+                05 / MY CONTRIBUTION
+              </span>
+              <p className="text-xs sm:text-sm text-[#171916] dark:text-[#F2F2EC] leading-relaxed font-medium">
+                {cs.contribution}
+              </p>
+            </div>
           </div>
 
-          {/* Frontend, Backend & Database Architecture */}
-          <div className="space-y-4">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#5A635E] block">
-              SYSTEM ARCHITECTURE
+          {/* 06: Technical Implementation */}
+          <div className="space-y-4 pt-4 border-t border-[#DDDED8] dark:border-[#30362F]">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+              06 / TECHNICAL IMPLEMENTATION
             </span>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-lg bg-[#101412] border border-[#1C2420] space-y-2">
-                <span className="text-xs font-mono text-[#EDEDEA] font-semibold block">Frontend Layer</span>
-                <p className="text-xs text-[#8E9892] leading-relaxed">{project.frontendImplementation}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+              <div className="p-4 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] space-y-1.5">
+                <span className="text-[#171916] dark:text-[#F2F2EC] font-semibold block">Frontend Architecture</span>
+                <p className="text-[#70736D] dark:text-[#A0A49D] leading-relaxed font-sans">{cs.technicalImplementation.frontend}</p>
               </div>
-
-              <div className="p-5 rounded-lg bg-[#101412] border border-[#1C2420] space-y-2">
-                <span className="text-xs font-mono text-[#EDEDEA] font-semibold block">Backend Layer</span>
-                <p className="text-xs text-[#8E9892] leading-relaxed">{project.backendImplementation}</p>
+              <div className="p-4 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] space-y-1.5">
+                <span className="text-[#171916] dark:text-[#F2F2EC] font-semibold block">Backend Architecture</span>
+                <p className="text-[#70736D] dark:text-[#A0A49D] leading-relaxed font-sans">{cs.technicalImplementation.backend}</p>
               </div>
-
-              <div className="p-5 rounded-lg bg-[#101412] border border-[#1C2420] space-y-2">
-                <span className="text-xs font-mono text-[#EDEDEA] font-semibold block">Database Layer</span>
-                <p className="text-xs text-[#8E9892] leading-relaxed">{project.databaseDesign}</p>
+              <div className="p-4 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] space-y-1.5">
+                <span className="text-[#171916] dark:text-[#F2F2EC] font-semibold block">Database Modeling</span>
+                <p className="text-[#70736D] dark:text-[#A0A49D] leading-relaxed font-sans">{cs.technicalImplementation.database}</p>
               </div>
             </div>
           </div>
 
-          {/* Major Features */}
-          <div className="space-y-3">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#5A635E] block">
-              CORE FUNCTIONALITY
+          {/* 07: Features */}
+          <div className="space-y-4 pt-4 border-t border-[#DDDED8] dark:border-[#30362F]">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+              07 / MAJOR FUNCTIONAL MODULES
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {project.importantFeatures.map((feat, i) => (
-                <div key={i} className="flex items-start gap-2.5 p-3 rounded bg-[#101412] border border-[#1C2420] text-xs text-[#EDEDEA]">
-                  <span className="text-[#24D18A] mt-0.5">&bull;</span>
-                  <span className="leading-relaxed">{feat}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-[#171916] dark:text-[#F2F2EC]">
+              {cs.features.map((feat, idx) => (
+                <div key={idx} className="flex items-start gap-2 p-3 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F]">
+                  <span className="text-[#315C45] dark:text-[#83A88B] mt-0.5">&mdash;</span>
+                  <span className="leading-snug">{feat}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Challenges & Problem Solving */}
-          <div className="p-6 rounded-xl bg-[#101412] border border-[#1C2420] space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#24D18A] block">
-              IMPLEMENTATION CHALLENGES & RESOLUTION
+          {/* 09: Challenges & Problem-Solving */}
+          <div className="p-6 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] space-y-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#315C45] dark:text-[#83A88B] block">
+              09 / CHALLENGES & PROBLEM-SOLVING
             </span>
-            <p className="text-xs sm:text-sm text-[#8E9892] leading-relaxed">
-              {project.challengesAndProblemSolving}
+            <p className="text-xs sm:text-sm text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+              {cs.challengesAndSolving}
             </p>
           </div>
 
-          {/* Technologies Used */}
-          <div className="space-y-3">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#5A635E] block">
-              TECHNOLOGIES DEPLOYED
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((t) => (
-                <span key={t} className="px-3 py-1 rounded text-xs font-mono bg-[#101412] border border-[#1C2420] text-[#8E9892]">
-                  {t}
-                </span>
-              ))}
+          {/* 10: Related Projects */}
+          <div className="pt-4 border-t border-[#DDDED8] dark:border-[#30362F] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-[#70736D] dark:text-[#A0A49D]">
+            <div>
+              <span>10 / RELATED PROJECTS: </span>
+              <span className="text-[#171916] dark:text-[#F2F2EC] font-semibold">{cs.relatedProjects.join(' &bull; ')}</span>
             </div>
+            <button
+              onClick={onClose}
+              className="px-4 py-1.5 rounded bg-white dark:bg-[#191D19] border border-[#DDDED8] dark:border-[#30362F] text-[#171916] dark:text-[#F2F2EC] hover:border-[#171916] dark:hover:border-[#F2F2EC]"
+            >
+              CLOSE CASE STUDY
+            </button>
           </div>
 
-        </div>
-
-        {/* Modal Footer */}
-        <div className="px-6 sm:px-8 py-4 bg-[#0D110F] border-t border-[#1C2420] flex items-center justify-between">
-          <span className="text-[11px] font-mono text-[#5A635E]">
-            Ahammed Najad KK &bull; Technical Case Study
-          </span>
-          <button
-            onClick={onClose}
-            className="px-4 py-1.5 rounded bg-[#141A17] border border-[#1C2420] text-xs font-mono uppercase text-[#EDEDEA] hover:text-[#24D18A] transition-colors"
-          >
-            Close
-          </button>
         </div>
 
       </div>

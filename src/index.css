@@ -4,43 +4,55 @@
 
 @layer base {
   :root {
-    --bg-main: #080A09;
-    --bg-surface: #101412;
-    --border-color: #1C2420;
-    --text-primary: #EDEDEA;
-    --text-secondary: #8E9892;
-    --accent: #24D18A;
+    --bg-page: #F5F4F0;
+    --bg-surface: #FFFFFF;
+    --text-primary: #171916;
+    --text-secondary: #70736D;
+    --border-line: #DDDED8;
+    --accent-color: #315C45;
+  }
+
+  .dark {
+    --bg-page: #111311;
+    --bg-surface: #191D19;
+    --text-primary: #F2F2EC;
+    --text-secondary: #A0A49D;
+    --border-line: #30362F;
+    --accent-color: #83A88B;
   }
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
-    background-color: #080A09;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
   }
 
   body {
-    background-color: #080A09;
-    color: #EDEDEA;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Refined minimal scrollbar */
+  /* Refined Swiss Editorial Scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #080A09;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1C2420;
-    border-radius: 3px;
+    background: #DDDED8;
+    border-radius: 2px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #30362F;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #28362F;
+    background: #70736D;
   }
 }
 
@@ -49,9 +61,16 @@
     text-wrap: balance;
   }
 
-  .hairline-border {
-    border-width: 1px;
-    border-color: #1C2420;
+  .hairline-b {
+    border-bottom: 1px solid var(--border-line);
+  }
+
+  .hairline-t {
+    border-top: 1px solid var(--border-line);
+  }
+
+  .hairline-all {
+    border: 1px solid var(--border-line);
   }
 }
 

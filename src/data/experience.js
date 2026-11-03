@@ -1,56 +1,54 @@
-export const professionalExperience = [
+export const professionalTimeline = [
   {
+    number: "01",
+    organization: "KOD BRAND",
     role: "Junior Software Developer",
-    company: "Kod Brand",
-    location: "Kerala, India",
-    startDate: "10 August 2026",
-    endDate: "Present",
-    experienceTime: "Approx. 3 months (as of Nov 2026)",
-    isCurrent: true,
-    summary: "Working across frontend and backend development to build, maintain, and optimize business-critical web applications and multi-department CRM systems.",
+    period: "10 August 2026 – Present",
+    type: "Full-Time Position",
+    summary: "Working across frontend and backend development to build, maintain, and optimize business-critical web applications and CRM systems.",
     responsibilities: [
-      "Frontend and backend full-stack development using the MERN stack.",
-      "Building applications and operational modules from scratch based on business requirements.",
-      "Maintaining, refactoring, and improving existing web applications.",
-      "Developing React-based user interfaces and responsive dashboards.",
-      "Creating backend APIs and application logic in Node.js and Express.",
-      "Managing MongoDB databases and designing efficient Mongoose schemas.",
-      "Debugging frontend and backend issues in development and staging.",
-      "Handling deployment and production issues.",
-      "Understanding client requirements and communicating with clients.",
-      "Collaborating with developers and working independently when required.",
-      "Implementing business workflows and CRM functionality."
+      "Full-stack application development across client and server layers.",
+      "Frontend and backend implementation using React, Node.js, and Express.",
+      "New feature development and business module architecture.",
+      "Existing application maintenance, refactoring, and code reviews.",
+      "Direct client requirement communication and workflow analysis.",
+      "API development and MongoDB database schema management.",
+      "Deployment, staging configuration, and production debugging."
     ]
   },
   {
-    role: "MERN Stack Intern",
-    company: "Kod Brand",
-    location: "Kerala, India",
+    number: "02",
+    organization: "KOD BRAND",
+    role: "MERN Stack Development Internship",
     period: "4 Months",
-    isCurrent: false,
-    summary: "Professional internship focused on end-to-end full-stack web application development, API integration, and production workflows.",
+    type: "Professional Internship",
+    summary: "Hands-on professional internship focused on end-to-end full-stack web application development, API integration, and collaborative version control.",
     responsibilities: [
-      "Built full-stack web applications integrating React frontends with Node.js and Express backends.",
-      "Implemented database schemas, validation rules, and CRUD endpoints with MongoDB and Mongoose.",
-      "Integrated secure user authentication using JSON Web Tokens (JWT) and password hashing with bcrypt.",
-      "Practiced collaborative Git workflows, version control discipline, and code review standards."
+      "Built full-stack web applications integrating React frontends with Express APIs.",
+      "Implemented database schemas, validation rules, and CRUD endpoints in MongoDB.",
+      "Integrated secure authentication with JSON Web Tokens (JWT) and bcrypt hashing.",
+      "Practiced collaborative Git version control, branching strategies, and testing."
+    ]
+  },
+  {
+    number: "03",
+    organization: "KOD BRAND ACADEMY",
+    role: "MERN Stack Development Course",
+    period: "Completed",
+    type: "Specialized Training",
+    summary: "Comprehensive professional curriculum covering modern JavaScript (ES6+), React.js component architecture, Node.js runtime, Express REST APIs, and MongoDB database management.",
+    responsibilities: [
+      "Modern JavaScript ES6+, asynchronous programming, and DOM manipulation.",
+      "Component lifecycle, hooks, state management, and routing in React.",
+      "RESTful API design principles, route controllers, and middleware patterns.",
+      "NoSQL database modeling, Mongoose ODM, and schema validation."
     ]
   }
 ];
 
-export const academicAndTraining = [
-  {
-    type: "Professional Training",
-    institution: "Kod Brand Academy",
-    discipline: "MERN Stack Development Course",
-    period: "Completed",
-    description: "Intensive training in MongoDB, Express.js, React.js, Node.js, modern JavaScript (ES6+), RESTful API design, and full-stack software development workflows."
-  },
-  {
-    type: "Education",
-    institution: "Higher Secondary Education",
-    discipline: "Biology Science",
-    period: "Completed",
-    description: "Foundational education with strong analytical and scientific problem-solving focus."
-  }
-];
+export const formalEducation = {
+  institution: "Higher Secondary Education",
+  discipline: "Biology Science",
+  period: "Completed",
+  note: "Scientific problem-solving, mathematics, and analytical foundation."
+};
