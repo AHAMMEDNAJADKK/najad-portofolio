@@ -1,59 +1,68 @@
 import React from 'react';
-import SectionHeading from '../components/SectionHeading';
-import { engineeringCapabilities } from '../data/skills';
+import { technicalExpertiseIndex } from '../data/skills';
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 sm:py-32 border-b border-[#1C2420]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="skills" className="py-24 sm:py-32 lg:py-36 border-b border-[#DDDED8] dark:border-[#30362F]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
         
-        <SectionHeading
-          number="04"
-          category="CAPABILITIES"
-          title="Technical Expertise & Engineering Stack"
-          description="A disciplined, production-tested MERN stack capability matrix organized by architectural domain. No arbitrary skill bars or inflated percentages."
-        />
+        {/* Small Label Identifier */}
+        <div className="flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#70736D] dark:text-[#A0A49D] mb-12 sm:mb-16">
+          <span>03 / EXPERTISE</span>
+          <span className="w-8 h-[1px] bg-[#DDDED8] dark:bg-[#30362F]"></span>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {engineeringCapabilities.map((cap, idx) => (
-            <div 
-              key={idx}
-              className="p-8 rounded-2xl bg-[#101412] border border-[#1C2420] hover:border-[#28362F] transition-all flex flex-col justify-between"
-            >
-              <div>
-                {/* Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-[#1C2420]">
-                  <h3 className="text-sm font-mono tracking-widest uppercase text-[#24D18A] font-bold">
-                    {cap.category}
-                  </h3>
-                  <span className="text-xs font-mono text-[#5A635E]">
-                    {cap.subtitle}
+        {/* Section Headline */}
+        <div className="max-w-3xl mb-14 sm:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC]">
+            Engineering Capability Index
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+            A structured index of technologies, protocols, and tooling deployed across client and server layers. No arbitrary percentages or skill bars.
+          </p>
+        </div>
+
+        {/* Editorial Index Tables */}
+        <div className="space-y-16">
+          {technicalExpertiseIndex.map((domain) => (
+            <div key={domain.category} className="space-y-4">
+              
+              {/* Category Header Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-[#171916] dark:border-[#F2F2EC]">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-xs font-mono text-[#315C45] dark:text-[#83A88B] font-bold">
+                    INDEX {domain.indexNumber}
                   </span>
+                  <h3 className="text-lg sm:text-xl font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC]">
+                    {domain.category}
+                  </h3>
                 </div>
-
-                <p className="mt-4 text-xs sm:text-sm text-[#8E9892] leading-relaxed">
-                  {cap.description}
+                <p className="text-xs font-mono text-[#70736D] dark:text-[#A0A49D]">
+                  {domain.description}
                 </p>
+              </div>
 
-                {/* Items List */}
-                <div className="mt-6 divide-y divide-[#1C2420] border-y border-[#1C2420]">
-                  {cap.items.map((item, iIdx) => (
-                    <div key={iIdx} className="py-3 flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#EDEDEA] font-medium">
-                        {item.name}
-                      </span>
-                      <span className="text-[#5A635E]">
-                        {item.role}
+              {/* Technologies Table */}
+              <div className="divide-y divide-[#DDDED8] dark:divide-[#30362F] border-b border-[#DDDED8] dark:border-[#30362F]">
+                {domain.technologies.map((tech, tIdx) => (
+                  <div 
+                    key={tIdx} 
+                    className="py-4 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-colors px-1"
+                  >
+                    <div className="md:col-span-4">
+                      <span className="text-sm font-mono font-semibold text-[#171916] dark:text-[#F2F2EC]">
+                        {tech.name}
                       </span>
                     </div>
-                  ))}
-                </div>
+                    <div className="md:col-span-8">
+                      <span className="text-xs sm:text-sm text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+                        {tech.application}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="mt-6 pt-4 flex items-center justify-between text-[11px] font-mono text-[#5A635E]">
-                <span>ARCHITECTURAL DOMAIN 0{idx + 1}</span>
-                <span className="text-[#8E9892]">VERIFIED IN PRODUCTION</span>
-              </div>
             </div>
           ))}
         </div>

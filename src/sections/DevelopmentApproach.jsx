@@ -1,53 +1,56 @@
 import React from 'react';
-import SectionHeading from '../components/SectionHeading';
-import { engineeringApproachSteps } from '../data/approach';
+import { developmentProcess } from '../data/approach';
 
 export default function DevelopmentApproach() {
   return (
-    <section id="approach" className="py-24 sm:py-32 border-b border-[#1C2420]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="approach" className="py-24 sm:py-32 lg:py-36 border-b border-[#DDDED8] dark:border-[#30362F]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
         
-        <SectionHeading
-          number="05"
-          category="PROCESS"
-          title="Engineering Methodology & Workflow"
-          description="A disciplined 6-stage lifecycle to ensure business requirements translate into reliable, maintainable web software."
-        />
+        {/* Small Label Identifier */}
+        <div className="flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#70736D] dark:text-[#A0A49D] mb-12 sm:mb-16">
+          <span>05 / PROCESS</span>
+          <span className="w-8 h-[1px] bg-[#DDDED8] dark:bg-[#30362F]"></span>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          {engineeringApproachSteps.map((step, idx) => (
+        {/* Section Headline */}
+        <div className="max-w-3xl mb-16 sm:mb-24">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC]">
+            Development Methodology
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+            A disciplined engineering lifecycle moving from business analysis to stable cloud deployment.
+          </p>
+        </div>
+
+        {/* 6-Stage Process: Structured Editorial Table */}
+        <div className="divide-y divide-[#DDDED8] dark:divide-[#30362F] border-y border-[#DDDED8] dark:border-[#30362F]">
+          {developmentProcess.map((step) => (
             <div 
-              key={idx}
-              className="p-8 rounded-2xl bg-[#101412] border border-[#1C2420] hover:border-[#28362F] transition-all flex flex-col justify-between group"
+              key={step.step}
+              className="py-8 sm:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 items-baseline hover:bg-black/[0.01] dark:hover:bg-white/[0.01] transition-colors"
             >
-              <div>
-                {/* Number & Phase Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-[#1C2420]">
-                  <span className="text-xl font-mono font-bold text-[#24D18A]">
-                    {step.number}
-                  </span>
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#5A635E]">
-                    PHASE {idx + 1}
-                  </span>
-                </div>
+              {/* Step Number (2 cols) */}
+              <div className="md:col-span-2">
+                <span className="text-xl sm:text-2xl font-mono font-medium text-[#315C45] dark:text-[#83A88B]">
+                  {step.step}
+                </span>
+              </div>
 
-                <div className="mt-5 space-y-2">
-                  <h3 className="text-xl font-semibold text-[#EDEDEA] group-hover:text-[#24D18A] transition-colors">
-                    {step.phase}
-                  </h3>
-                  <p className="text-xs font-mono text-[#8E9892]">
-                    {step.headline}
-                  </p>
-                </div>
-
-                <p className="mt-4 text-xs sm:text-sm text-[#8E9892] leading-relaxed">
-                  {step.description}
+              {/* Phase Name & Summary (4 cols) */}
+              <div className="md:col-span-4 space-y-1">
+                <h3 className="text-lg sm:text-xl font-medium text-[#171916] dark:text-[#F2F2EC] tracking-tight">
+                  {step.phase}
+                </h3>
+                <p className="text-xs font-mono text-[#70736D] dark:text-[#A0A49D]">
+                  {step.summary}
                 </p>
               </div>
 
-              {/* Deliverable Footer */}
-              <div className="mt-8 pt-4 border-t border-[#1C2420] text-[11px] font-mono text-[#5A635E]">
-                OUTPUT: <span className="text-[#EDEDEA]">{step.deliverable}</span>
+              {/* Detailed Description (6 cols) */}
+              <div className="md:col-span-6">
+                <p className="text-xs sm:text-sm text-[#70736D] dark:text-[#A0A49D] leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             </div>
           ))}

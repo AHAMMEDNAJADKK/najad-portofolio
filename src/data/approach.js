@@ -1,44 +1,38 @@
-export const engineeringApproachSteps = [
+export const developmentProcess = [
   {
-    number: "01",
+    step: "01",
     phase: "Understand",
-    headline: "Analyse client requirements and business workflows.",
-    description: "Engage directly with stakeholders and clients to clarify project objectives, user personas, operational constraints, and essential workflows before writing code.",
-    deliverable: "Requirement specifications & workflow mapping"
+    summary: "Requirements and business workflows.",
+    description: "Analyse client operational requirements, domain constraints, user roles, and business objectives before writing any code. Map out user stories and data lifecycles."
   },
   {
-    number: "02",
-    phase: "Architect",
-    headline: "Plan frontend, backend, API and database structure.",
-    description: "Map data flows, define component hierarchies, design RESTful endpoint contracts, and establish authentication and access boundaries across systems.",
-    deliverable: "System architecture & schema blueprints"
+    step: "02",
+    phase: "Plan",
+    summary: "Application architecture and data structure.",
+    description: "Design system boundaries, define RESTful endpoint contracts, structure Mongoose database schemas, and map component hierarchies for clear separation of concerns."
   },
   {
-    number: "03",
-    phase: "Build",
-    headline: "Develop responsive interfaces and backend functionality.",
-    description: "Implement clean React interfaces with modern styling and build Express controllers, middleware, and database operations according to technical specifications.",
-    deliverable: "Modular frontend UI & core backend services"
+    step: "03",
+    phase: "Develop",
+    summary: "Frontend and backend implementation.",
+    description: "Build accessible React user interfaces with clean state management, and implement Node/Express controllers, business services, and database operations."
   },
   {
-    number: "04",
+    step: "04",
+    phase: "Integrate",
+    summary: "APIs, authentication and database.",
+    description: "Connect frontend client state with backend endpoints, configure JWT authentication and authorization guards, and integrate third-party utilities and file uploads."
+  },
+  {
+    step: "05",
     phase: "Validate",
-    headline: "Test features, resolve bugs and verify integrations.",
-    description: "Test API endpoints via Postman, audit UI responsiveness across breakpoints, inspect edge cases, and eliminate runtime issues across client and server.",
-    deliverable: "Verified integration & bug resolution"
+    summary: "Testing, debugging and issue resolution.",
+    description: "Verify endpoints with Postman, audit UI responsiveness across mobile, tablet, and desktop breakpoints, resolve edge cases, and eliminate runtime exceptions."
   },
   {
-    number: "05",
+    step: "06",
     phase: "Deploy",
-    headline: "Deploy applications and resolve production issues.",
-    description: "Configure environment variables, deploy to cloud platforms (Vercel, Render, MongoDB Atlas), and ensure smooth production rollout and issue resolution.",
-    deliverable: "Production deployment & live monitoring"
-  },
-  {
-    number: "06",
-    phase: "Maintain",
-    headline: "Improve existing systems and support evolving requirements.",
-    description: "Refactor legacy components, optimize database query aggregations, enhance feature sets, and maintain long-term application stability.",
-    deliverable: "Continuous performance & feature iteration"
+    summary: "Deployment and ongoing maintenance.",
+    description: "Configure environment variables, deploy to cloud platforms (Vercel, Render, MongoDB Atlas), monitor server performance, and maintain application stability."
   }
 ];

@@ -1,59 +1,53 @@
 import React from 'react';
-import SectionHeading from '../components/SectionHeading';
 import { profileData } from '../data/profile';
-import { ArrowUpRight } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 sm:py-32 border-b border-[#1C2420]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="about" className="py-24 sm:py-32 lg:py-36 border-b border-[#DDDED8] dark:border-[#30362F]">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
         
-        {/* Section Identifier */}
-        <SectionHeading
-          number="01"
-          category="ABOUT"
-          title="Engineering Identity"
-        />
-
-        {/* Large Editorial Statement */}
-        <div className="max-w-4xl mb-16 sm:mb-20">
-          <p className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-[-0.025em] text-[#EDEDEA] leading-[1.3] text-balance">
-            "{profileData.about.statement}"
-          </p>
+        {/* Small Label Identifier */}
+        <div className="flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#70736D] dark:text-[#A0A49D] mb-12 sm:mb-16">
+          <span>{profileData.about.label}</span>
+          <span className="w-8 h-[1px] bg-[#DDDED8] dark:bg-[#30362F]"></span>
         </div>
 
         {/* Editorial Two-Column Spread */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          {/* Narrative Column (6 cols) */}
-          <div className="lg:col-span-6 space-y-6 text-sm sm:text-base text-[#8E9892] leading-relaxed">
-            {profileData.about.paragraphs.map((para, idx) => (
-              <p key={idx}>
-                {para}
-              </p>
-            ))}
+          {/* Left Column: Large Editorial Heading & Technical Highlights (5 cols) */}
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-[1.18] text-balance">
+              "{profileData.about.statement}"
+            </h2>
 
-            <div className="pt-4 border-t border-[#1C2420] flex items-center justify-between text-xs font-mono text-[#5A635E]">
-              <span>RESIDENCE: MANJERI, MALAPPURAM</span>
-              <span className="text-[#24D18A]">OPEN TO OPPORTUNITIES</span>
+            {/* Structured Metadata Box */}
+            <div className="pt-6 border-t border-[#DDDED8] dark:border-[#30362F] space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#70736D] dark:text-[#A0A49D] block">
+                TECHNICAL VERIFICATION
+              </span>
+              <div className="space-y-2 text-xs font-mono">
+                {profileData.about.technicalHighlights.map((item, idx) => (
+                  <div key={idx} className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 pb-1.5 border-b border-[#DDDED8]/50 dark:border-[#30362F]/50">
+                    <span className="text-[#70736D] dark:text-[#A0A49D]">{item.label}</span>
+                    <span className="text-[#171916] dark:text-[#F2F2EC] font-medium">{item.value}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Structured Domain Columns (6 cols) */}
-          <div className="lg:col-span-6 space-y-0 divide-y divide-[#1C2420] border-y border-[#1C2420]">
-            {profileData.about.pillars.map((pillar, idx) => (
-              <div key={idx} className="py-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 group">
-                <div className="w-full sm:w-2/5 flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#5A635E]">0{idx + 1}</span>
-                  <h3 className="text-sm font-semibold text-[#EDEDEA] group-hover:text-[#24D18A] transition-colors">
-                    {pillar.title}
-                  </h3>
-                </div>
-                <p className="w-full sm:w-3/5 text-xs text-[#8E9892] leading-relaxed">
-                  {pillar.detail}
-                </p>
-              </div>
+          {/* Right Column: Detailed Editorial Biography (7 cols) */}
+          <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#70736D] dark:text-[#A0A49D] leading-relaxed font-normal">
+            {profileData.about.biography.map((paragraph, idx) => (
+              <p key={idx} className="text-balance">
+                {paragraph}
+              </p>
             ))}
+
+            <div className="pt-8 border-t border-[#DDDED8] dark:border-[#30362F] text-xs font-mono text-[#315C45] dark:text-[#83A88B]">
+              SPECIALIZATION: MERN STACK &bull; BUSINESS CRM SYSTEMS &bull; REST API ARCHITECTURE
+            </div>
           </div>
 
         </div>
