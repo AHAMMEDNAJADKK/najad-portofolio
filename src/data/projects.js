@@ -9,17 +9,20 @@ export const projectsData = [
   {
     id: "last-key",
     slug: "last-key",
+    number: "01",
     title: "LastKey – Digital Will & Asset Nominee Management",
     shortTitle: "LastKey",
     category: "Full-Stack Applications",
+    tagline: "Digital Will & Asset Nominee Management",
     badge: "Flagship Project",
     isFlagship: true,
+    layoutType: "featured-full",
     subtitle: "A secure digital legacy vault and nominee asset management platform with verified bereavement document protocols.",
-    summary: "LastKey is a specialized digital will and nominee management system that enables individuals to catalog sensitive digital assets, assign designated beneficiaries, and transfer vital information securely upon verified legal death certificate review.",
+    summary: "LastKey enables individuals to catalog sensitive digital assets, assign designated beneficiaries, and transfer vital information securely upon verified legal death certificate review.",
     
-    businessProblem: "Individuals accumulate critical digital assets, credentials, and financial documentation, but lacks secure, automated methods to ensure beneficiaries receive access upon death without risking premature exposure or legal gridlock during life.",
+    businessProblem: "Individuals accumulate critical digital assets, credentials, and financial documentation, but lack secure, automated methods to ensure beneficiaries receive access upon death without risking premature exposure or legal gridlock during life.",
     
-    solutionProvided: "Developed a dual-portal platform featuring an encrypted personal asset vault for users and a claim submission portal for nominees. Implemented an administrative verification pipeline that requires certified death documentation before cryptographic release of asset access.",
+    solutionProvided: "Developed a dual-portal platform featuring an encrypted personal asset vault for users and a claim submission portal for nominees. Implemented an administrative verification pipeline requiring certified death documentation before cryptographic release of asset access.",
     
     roleAndContribution: "Full-Stack Developer. Designed the complete database architecture, built secure REST APIs in Node.js/Express, implemented Multer file upload handling for certificates and documents, created the responsive React interface, and engineered the verification approval state machine.",
     
@@ -63,11 +66,14 @@ export const projectsData = [
   {
     id: "drive-line-crm",
     slug: "drive-line-crm",
+    number: "02",
     title: "Drive Line CRM – Automobile Spare-Parts Management",
     shortTitle: "Drive Line CRM",
     category: "CRM Systems",
+    tagline: "Multi-Branch Automotive Operations ERP",
     badge: "Enterprise CRM",
     isFlagship: false,
+    layoutType: "editorial-card-wide",
     subtitle: "A multi-branch operations CRM tailored for automotive spare-parts distributors, inventory leads, and supplier logistics.",
     summary: "Drive Line CRM streamlines end-to-end automotive parts procurement, branch operations, lead follow-ups, and customer vehicle history across multiple retail and wholesale branches.",
     
@@ -115,11 +121,14 @@ export const projectsData = [
   {
     id: "razain-benz-crm",
     slug: "razain-benz-crm",
+    number: "03",
     title: "Razain-Benz CRM – Driving School & Auto Consultant ERP",
     shortTitle: "Razain-Benz CRM",
     category: "CRM Systems",
+    tagline: "Candidate Ledger & Daily Cash Register",
     badge: "Financial ERP",
     isFlagship: false,
+    layoutType: "editorial-card-wide",
     subtitle: "Enterprise management system for driving schools featuring candidate enrollment, batch scheduling, and automated receipts.",
     summary: "A production MERN stack enterprise application designed for auto consultants and driving schools to manage student candidates, batch scheduling, multi-method payment receipts, and daily cash drawer reconciliation.",
     
@@ -167,11 +176,14 @@ export const projectsData = [
   {
     id: "it-consultant-crm",
     slug: "it-consultant-crm",
+    number: "04",
     title: "Nexora IT Suite – IT Services & Software ERP",
     shortTitle: "Nexora IT Suite",
     category: "CRM Systems",
+    tagline: "12-Module Enterprise Services ERP",
     badge: "12-Module ERP",
     isFlagship: false,
+    layoutType: "editorial-card-accent",
     subtitle: "A comprehensive 12-module enterprise ERP tailored for IT consulting agencies, software firms, and dev shops.",
     summary: "Nexora IT Suite bridges client acquisition, project scoping, agile sprints, developer shift reporting, SLA contracts, and Git commit auditing into a single unified platform.",
     
@@ -219,11 +231,14 @@ export const projectsData = [
   {
     id: "kod-brand-crm",
     slug: "kod-brand-crm",
+    number: "05",
     title: "Kod Brand CRM – Enterprise Operations & Multi-Dept System",
     shortTitle: "Kod Brand CRM",
     category: "CRM Systems",
+    tagline: "Internal Multi-Department Tracking",
     badge: "Operations CRM",
     isFlagship: false,
+    layoutType: "editorial-card-compact",
     subtitle: "Internal operations tracking and CRM system for multi-department organizations with granular role-based permissions.",
     summary: "Built to coordinate multi-department workflows—including Engineering, Telecalling, Design, Video Production, and HR—featuring real-time pipeline management and automated reporting. (Public disclosure limited to non-confidential architecture).",
     
@@ -270,11 +285,14 @@ export const projectsData = [
   {
     id: "wear-caviro",
     slug: "wear-caviro",
+    number: "06",
     title: "Wear Caviro – E-Commerce Footwear & Sneaker Store",
     shortTitle: "Wear Caviro",
     category: "E-commerce",
+    tagline: "Lifestyle Sneaker E-Commerce Platform",
     badge: "Live Web App",
     isFlagship: false,
+    layoutType: "editorial-card-compact",
     subtitle: "A modern, full-stack lifestyle sneaker and footwear e-commerce application with dynamic cart, checkout, and admin panel.",
     summary: "Wear Caviro is a full-stack e-commerce web application featuring modern product showcases, responsive cart management, customer authentication, and an administrative inventory management dashboard.",
     

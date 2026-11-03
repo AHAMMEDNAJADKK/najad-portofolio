@@ -1,134 +1,114 @@
 import React from 'react';
 import SectionHeading from '../components/SectionHeading';
-import { experienceData, educationData } from '../data/experience';
-import { Briefcase, GraduationCap, CheckCircle2, Calendar, MapPin } from 'lucide-react';
+import { professionalExperience, academicAndTraining } from '../data/experience';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-24 sm:py-32 border-b border-[#1C2420]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         <SectionHeading
-          badge="02 // CAREER TIMELINE"
-          title="Education & Professional Experience"
-          subtitle="A transparent record of my hands-on software development roles, training, and educational background."
+          number="02"
+          category="EXPERIENCE"
+          title="Professional Career Record"
+          description="A chronological record of full-stack software development experience, industry training, and academic background."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Work Experience Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="flex items-center gap-2 pb-4 border-b border-[#25342D]">
-              <Briefcase className="w-5 h-5 text-[#24D18A]" />
-              <h3 className="text-xl font-bold text-[#F5F7F6]">Work Experience</h3>
+          {/* Work Experience (8 cols) */}
+          <div className="lg:col-span-8 space-y-12">
+            <div className="flex items-center gap-2 pb-3 border-b border-[#1C2420] text-xs font-mono uppercase tracking-widest text-[#8E9892]">
+              <span>WORK EXPERIENCE</span>
             </div>
 
-            <div className="relative pl-6 sm:pl-8 border-l border-[#25342D] space-y-8">
-              {experienceData.map((exp, idx) => (
-                <div key={idx} className="relative group">
-                  {/* Timeline Node */}
-                  <div className={`absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 bg-[#080B0A] ${
-                    exp.isCurrent ? 'border-[#24D18A] shadow-glow-sm' : 'border-[#6C7A73]'
-                  }`}>
-                    {exp.isCurrent && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#24D18A] absolute inset-0 m-auto animate-pulse"></span>
-                    )}
-                  </div>
-
-                  <div className="p-6 rounded-2xl bg-[#121A16] border border-[#25342D] group-hover:border-[#31443B] transition-colors space-y-4">
-                    {/* Role Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <div>
-                        <h4 className="text-lg font-bold text-[#F5F7F6]">
-                          {exp.role}
-                        </h4>
-                        <p className="text-sm font-semibold text-[#24D18A]">
-                          {exp.company} &bull; <span className="text-xs text-[#A4AEA8] font-normal">{exp.location}</span>
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#A4AEA8] bg-[#101613] px-3 py-1 rounded-lg border border-[#25342D] w-fit">
-                        <Calendar className="w-3.5 h-3.5 text-[#24D18A]" />
-                        <span>{exp.startDate ? `${exp.startDate} – ${exp.endDate}` : exp.period}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-[#A4AEA8] leading-relaxed">
-                      {exp.summary}
-                    </p>
-
-                    {/* Detailed Responsibilities */}
-                    <div className="pt-3 border-t border-[#25342D]/60 space-y-2">
-                      <p className="text-xs font-mono uppercase text-[#A4AEA8] tracking-wider">
-                        Core Responsibilities & Deliverables:
+            <div className="space-y-12">
+              {professionalExperience.map((exp, idx) => (
+                <div key={idx} className="space-y-4">
+                  {/* Role Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 pb-3 border-b border-[#1C2420]">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold text-[#EDEDEA]">
+                        {exp.role}
+                      </h3>
+                      <p className="text-sm font-mono text-[#8E9892] mt-0.5">
+                        {exp.company} &bull; {exp.location}
                       </p>
-                      <ul className="grid grid-cols-1 gap-2">
-                        {exp.responsibilities.map((resp, rIdx) => (
-                          <li key={rIdx} className="flex items-start gap-2.5 text-xs text-[#F5F7F6]/90">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#24D18A] flex-shrink-0 mt-0.5" />
-                            <span className="leading-relaxed">{resp}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
 
-                    {exp.isCurrent && (
-                      <div className="pt-2 text-[11px] font-mono text-[#24D18A]">
-                        Current experience: {exp.experienceTime}
-                      </div>
-                    )}
+                    <div className="text-xs font-mono text-[#24D18A] tracking-wider uppercase">
+                      {exp.startDate ? `${exp.startDate} — ${exp.endDate}` : exp.period}
+                    </div>
                   </div>
+
+                  {/* Summary */}
+                  <p className="text-xs sm:text-sm text-[#8E9892] leading-relaxed">
+                    {exp.summary}
+                  </p>
+
+                  {/* Responsibilities */}
+                  <div className="pt-2">
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-[#5A635E] mb-3">
+                      Key Deliverables & Responsibilities
+                    </p>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-[#EDEDEA]/90">
+                      {exp.responsibilities.map((resp, rIdx) => (
+                        <li key={rIdx} className="flex items-start gap-2">
+                          <span className="text-[#24D18A] mt-1 text-[10px]">&bull;</span>
+                          <span className="leading-relaxed">{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {exp.isCurrent && (
+                    <div className="pt-2 text-[11px] font-mono text-[#5A635E]">
+                      Current Tenure: {exp.experienceTime}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Education & Training Column (5 cols) */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="flex items-center gap-2 pb-4 border-b border-[#25342D]">
-              <GraduationCap className="w-5 h-5 text-[#24D18A]" />
-              <h3 className="text-xl font-bold text-[#F5F7F6]">Education & Training</h3>
+          {/* Training & Education (4 cols) */}
+          <div className="lg:col-span-4 space-y-12">
+            <div className="flex items-center gap-2 pb-3 border-b border-[#1C2420] text-xs font-mono uppercase tracking-widest text-[#8E9892]">
+              <span>EDUCATION & TRAINING</span>
             </div>
 
-            <div className="space-y-4">
-              {educationData.map((edu, idx) => (
-                <div 
-                  key={idx}
-                  className="p-6 rounded-2xl bg-[#121A16] border border-[#25342D] hover:border-[#31443B] transition-colors space-y-3"
-                >
-                  <div className="flex items-center justify-between text-xs font-mono text-[#24D18A]">
-                    <span className="uppercase tracking-wider">{edu.type}</span>
-                    <span className="text-[#A4AEA8]">{edu.period}</span>
+            <div className="space-y-8">
+              {academicAndTraining.map((item, idx) => (
+                <div key={idx} className="space-y-2 pb-6 border-b border-[#1C2420]/60 last:border-0">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#8E9892]">
+                    <span className="uppercase tracking-wider">{item.type}</span>
+                    <span className="text-[#5A635E]">{item.period}</span>
                   </div>
 
-                  <div>
-                    <h4 className="text-base font-bold text-[#F5F7F6]">
-                      {edu.discipline}
-                    </h4>
-                    <p className="text-xs font-medium text-[#A4AEA8] mt-0.5">
-                      {edu.institution}
-                    </p>
-                  </div>
+                  <h4 className="text-sm font-semibold text-[#EDEDEA]">
+                    {item.discipline}
+                  </h4>
+                  <p className="text-xs text-[#8E9892] font-mono">
+                    {item.institution}
+                  </p>
 
-                  <p className="text-xs text-[#A4AEA8] leading-relaxed pt-2 border-t border-[#25342D]/50">
-                    {edu.description}
+                  <p className="text-xs text-[#5A635E] leading-relaxed pt-1">
+                    {item.description}
                   </p>
                 </div>
               ))}
 
-              {/* Integrity Statement Card */}
-              <div className="p-5 rounded-xl bg-[#101613] border border-[#25342D]/70 text-xs text-[#A4AEA8] space-y-1.5">
-                <p className="font-mono text-[#24D18A] font-semibold uppercase tracking-wider">
-                  Honest Career Documentation
-                </p>
+              <div className="p-4 rounded bg-[#101412] border border-[#1C2420] text-[11px] font-mono text-[#8E9892] space-y-1">
+                <span className="text-[#EDEDEA] font-semibold block">INTEGRITY COMMITMENT</span>
                 <p className="leading-relaxed">
-                  All dates, roles, and institutional affiliations listed above represent verified records. No exaggerated senior titles or synthetic milestones.
+                  All dates, roles, and institutional records verified accurately. No unverified milestones or fabricated seniority claims.
                 </p>
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

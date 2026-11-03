@@ -1,44 +1,44 @@
-export const developmentApproachSteps = [
+export const engineeringApproachSteps = [
   {
-    step: "01",
-    title: "Understand Business Requirements",
-    description: "Engage directly with stakeholders and clients to clarify project objectives, user personas, operational constraints, and essential workflows before writing any code.",
-    deliverable: "Requirement breakdown & technical specifications"
+    number: "01",
+    phase: "Understand",
+    headline: "Analyse client requirements and business workflows.",
+    description: "Engage directly with stakeholders and clients to clarify project objectives, user personas, operational constraints, and essential workflows before writing code.",
+    deliverable: "Requirement specifications & workflow mapping"
   },
   {
-    step: "02",
-    title: "Plan Application Structure",
-    description: "Map out the complete architecture: determine data flows, define component hierarchies, map REST endpoint contracts, and establish authentication and access boundaries.",
-    deliverable: "System architecture & API contract blueprints"
+    number: "02",
+    phase: "Architect",
+    headline: "Plan frontend, backend, API and database structure.",
+    description: "Map data flows, define component hierarchies, design RESTful endpoint contracts, and establish authentication and access boundaries across systems.",
+    deliverable: "System architecture & schema blueprints"
   },
   {
-    step: "03",
-    title: "Develop Frontend Interfaces",
-    description: "Build clean, accessible, and responsive user interfaces using React and Tailwind CSS, focusing on intuitive user experience, state management, and clear form feedback.",
-    deliverable: "Pixel-accurate, componentized client UI"
+    number: "03",
+    phase: "Build",
+    headline: "Develop responsive interfaces and backend functionality.",
+    description: "Implement clean React interfaces with modern styling and build Express controllers, middleware, and database operations according to technical specifications.",
+    deliverable: "Modular frontend UI & core backend services"
   },
   {
-    step: "04",
-    title: "Implement Backend Logic & APIs",
-    description: "Develop robust Express.js route handlers, service controllers, custom validation middleware, JWT authentication mechanisms, and granular role-based authorization.",
-    deliverable: "Secure, structured RESTful API services"
+    number: "04",
+    phase: "Validate",
+    headline: "Test features, resolve bugs and verify integrations.",
+    description: "Test API endpoints via Postman, audit UI responsiveness across breakpoints, inspect edge cases, and eliminate runtime issues across client and server.",
+    deliverable: "Verified integration & bug resolution"
   },
   {
-    step: "05",
-    title: "Design & Manage Databases",
-    description: "Structure MongoDB collections and Mongoose schemas with data validation rules, relational references, indexing for performance, and data integrity safeguards.",
-    deliverable: "Optimized database schemas & data models"
+    number: "05",
+    phase: "Deploy",
+    headline: "Deploy applications and resolve production issues.",
+    description: "Configure environment variables, deploy to cloud platforms (Vercel, Render, MongoDB Atlas), and ensure smooth production rollout and issue resolution.",
+    deliverable: "Production deployment & live monitoring"
   },
   {
-    step: "06",
-    title: "Test & Debug",
-    description: "Thoroughly test endpoints using Postman, audit frontend UI responsiveness across viewports, handle edge cases, and eliminate runtime bugs across client and server.",
-    deliverable: "Verified, battle-tested codebase"
-  },
-  {
-    step: "07",
-    title: "Deploy & Maintain Applications",
-    description: "Configure environment variables, deploy to cloud platforms (Vercel, Render, MongoDB Atlas), monitor server performance, and resolve production issues promptly.",
-    deliverable: "Live production deployment & continuous maintenance"
+    number: "06",
+    phase: "Maintain",
+    headline: "Improve existing systems and support evolving requirements.",
+    description: "Refactor legacy components, optimize database query aggregations, enhance feature sets, and maintain long-term application stability.",
+    deliverable: "Continuous performance & feature iteration"
   }
 ];
