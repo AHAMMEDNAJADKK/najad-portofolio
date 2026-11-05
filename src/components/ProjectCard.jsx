@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, ArrowRight, ShieldCheck, Database, Layers, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, ArrowRight, ShieldCheck, Database, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
 export default function ProjectCard({ project, onSelectProject }) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { profileData } from '../data/profile';
 import ContactForm from '../components/ContactForm';
 import { ArrowUpRight } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '../components/Icons';
 
 export default function Contact() {
   const channels = [
@@ -64,7 +63,7 @@ export default function Contact() {
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#70736D] dark:text-[#A0A49D] block">
                       {ch.label}
                     </span>
-                    <span className="text-sm font-mono font-medium text-[#171916] dark:text-[#F2F2EC] block">
+                    <span className="text-sm font-mono font-medium text-[#171916] dark:text-[#F2F2EC] block break-all sm:break-normal">
                       {ch.value}
                     </span>
                     <span className="text-xs text-[#70736D] dark:text-[#A0A49D] block">

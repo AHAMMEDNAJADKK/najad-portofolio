@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
+import { ArrowDownRight } from 'lucide-react';
 import { profileData } from '../data/profile';
 
 export default function Hero() {
@@ -28,7 +28,7 @@ export default function Hero() {
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-[1.08] text-balance">
+              <h1 className="text-3xl sm:text-5xl lg:text-[4.25rem] font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-[1.08] text-balance break-words">
                 Engineering digital <br />
                 solutions for <span className="font-serif italic font-normal text-[#315C45] dark:text-[#83A88B]">real-world</span> <br />
                 problems.
