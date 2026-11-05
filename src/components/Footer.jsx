@@ -3,12 +3,12 @@ import { ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { profileData } from '../data/profile';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const currentYear = new Date().getFullYear();
 
   const navLinks = [
     { name: 'About', href: '#about' },
@@ -85,7 +85,7 @@ export default function Footer() {
         {/* Bottom Line */}
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[11px] font-mono text-[#70736D]/80 dark:text-[#A0A49D]/80">
           <p>
-            &copy; {currentYear} {profileData.name}. All rights reserved.
+            &copy; {CURRENT_YEAR} {profileData.name}. All rights reserved.
           </p>
           <p>
             Minimal Swiss Editorial Architecture &bull; Malappuram, Kerala, India

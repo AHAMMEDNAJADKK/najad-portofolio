@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, FileText, Download, ExternalLink } from 'lucide-react';
 import { profileData } from '../data/profile';
 
 export default function ResumeModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (!isOpen) return;
 
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = profileData.resumePath;
-    link.download = 'Ahammed-Najad-KK-Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
 
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resume-modal-title"
     >
       <div 
         className="relative w-full max-w-lg bg-[#F5F4F0] dark:bg-[#111311] border border-[#DDDED8] dark:border-[#30362F] rounded-lg p-6 sm:p-8 shadow-2xl text-[#171916] dark:text-[#F2F2EC]"
@@ -38,7 +47,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <FileText className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-medium text-[#171916] dark:text-[#F2F2EC]">Curriculum Vitae</h3>
+            <h3 id="resume-modal-title" className="text-lg font-medium text-[#171916] dark:text-[#F2F2EC]">Curriculum Vitae</h3>
             <p className="text-xs font-mono text-[#70736D] dark:text-[#A0A49D]">Ahammed Najad KK &bull; Verified Credentials</p>
           </div>
         </div>
@@ -50,8 +59,8 @@ export default function ResumeModal({ isOpen, onClose }) {
               <span>FILE: Ahammed-Najad-KK-Resume.pdf</span>
               <span>VERIFIED</span>
             </div>
-            <p className="text-[11px] text-[#171916] dark:text-[#F2F2EC] font-mono">
-              Path: <code>/public/resume/Ahammed-Najad-KK-Resume.pdf</code>
+            <p className="text-[11px] text-[#171916] dark:text-[#F2F2EC] font-mono break-all">
+              Document: <code>Ahammed-Najad-KK-Resume.pdf</code>
             </p>
           </div>
 
@@ -80,13 +89,16 @@ export default function ResumeModal({ isOpen, onClose }) {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row items-center gap-3">
-          <button
-            onClick={handleDownload}
+          <a
+            href={profileData.resumePath}
+            download="Ahammed-Najad-KK-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-[#171916] text-[#F5F4F0] dark:bg-[#F2F2EC] dark:text-[#111311] font-semibold text-xs font-mono uppercase tracking-wider hover:opacity-90 transition-opacity"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download PDF</span>
-          </button>
+          </a>
           
           <a
             href={`mailto:${profileData.email}?subject=Resume Request - Ahammed Najad KK`}

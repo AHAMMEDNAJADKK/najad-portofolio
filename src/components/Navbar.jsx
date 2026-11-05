@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { profileData } from '../data/profile';
 
@@ -24,6 +24,11 @@ export default function Navbar({ theme, onToggleTheme, onOpenResume }) {
       const sections = ['home', 'about', 'experience', 'skills', 'projects', 'approach', 'contact'];
       const scrollPos = window.scrollY + 200;
 
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+        setActiveSection('contact');
+        return;
+      }
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.offsetTop <= scrollPos) {
@@ -33,9 +38,19 @@ export default function Navbar({ theme, onToggleTheme, onOpenResume }) {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   return (
     <header 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
 export default function ProjectDetailModal({ project, onClose }) {
@@ -23,6 +23,9 @@ export default function ProjectDetailModal({ project, onClose }) {
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/70 backdrop-blur-sm overflow-y-auto animate-fade-in"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-project-title"
     >
       <div 
         className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-[#F5F4F0] dark:bg-[#111311] border border-[#DDDED8] dark:border-[#30362F] rounded-lg shadow-2xl overflow-hidden my-auto"
@@ -53,7 +56,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#315C45] dark:text-[#83A88B] block">
               {project.category}
             </span>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-tight">
+            <h2 id="modal-project-title" className="text-3xl sm:text-4xl font-medium tracking-tight text-[#171916] dark:text-[#F2F2EC] leading-tight">
               {project.name} — {project.subtitle}
             </h2>
             <p className="text-sm sm:text-base text-[#70736D] dark:text-[#A0A49D] leading-relaxed max-w-3xl">

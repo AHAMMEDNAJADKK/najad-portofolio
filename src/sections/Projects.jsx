@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { selectedProjects } from '../data/projects';
 import ProjectDetailModal from '../components/ProjectDetailModal';
-import { ArrowRight, ArrowUpRight, Database, Layers, ShieldCheck, Terminal, FileCode2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from '../components/Icons';
 
 export default function Projects() {
