@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Check, Copy, ArrowRight, AlertCircle } from 'lucide-react';
+import { Check, Copy, AlertCircle, Loader2, Send } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { profileData } from '../data/profile';
+import { SpotlightCard, Magnetic } from './MotionComponents';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -64,12 +66,11 @@ export default function ContactForm() {
       ).catch(() => {});
     }
 
-    window.location.href = mailtoUrl;
-
     setTimeout(() => {
+      window.location.href = mailtoUrl;
       setIsSubmitting(false);
       setSubmittedStatus('sent');
-    }, 400);
+    }, 600);
   };
 
   const handleCopyEmail = () => {
@@ -79,24 +80,25 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="rounded border border-[#DDDED8] dark:border-[#30362F] bg-white dark:bg-[#191D19] p-6 sm:p-10 shadow-sm">
+    <SpotlightCard className="rounded-2xl border border-[#DDDED8] dark:border-[#20262B] bg-white dark:bg-[#121417] p-6 sm:p-10 shadow-elevated">
       
       {/* Form Header */}
-      <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#DDDED8] dark:border-[#30362F]">
+      <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#DDDED8] dark:border-[#20262B]">
         <div>
-          <h3 className="text-base font-semibold text-[#171916] dark:text-[#F2F2EC]">Direct Inquiry Form</h3>
-          <p className="text-xs text-[#70736D] dark:text-[#A0A49D] mt-0.5">Dispatches through your local mail client with pre-formatted payload.</p>
+          <h3 className="text-lg font-semibold text-[#121513] dark:text-[#F3F4F6]">Direct Inquiry Form</h3>
+          <p className="text-xs text-[#636966] dark:text-[#9CA3AF] mt-0.5">Dispatches through your local mail client with pre-formatted payload.</p>
         </div>
 
         <button
+          type="button"
           onClick={handleCopyEmail}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#F5F4F0] dark:bg-[#111311] border border-[#DDDED8] dark:border-[#30362F] text-xs font-mono text-[#70736D] dark:text-[#A0A49D] hover:text-[#171916] dark:hover:text-[#F2F2EC] transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#F8F7F4] dark:bg-[#181C20] border border-[#DDDED8] dark:border-[#20262B] text-xs font-mono text-[#636966] dark:text-[#9CA3AF] hover:text-[#121513] dark:hover:text-[#F3F4F6] transition-colors"
           title="Copy email address"
         >
           {copiedEmail ? (
             <>
-              <Check className="w-3.5 h-3.5 text-[#315C45] dark:text-[#83A88B]" />
-              <span className="text-[#315C45] dark:text-[#83A88B]">Copied</span>
+              <Check className="w-3.5 h-3.5 text-[#1F6B47] dark:text-[#34D399]" />
+              <span className="text-[#1F6B47] dark:text-[#34D399] font-medium">Copied</span>
             </>
           ) : (
             <>
@@ -107,125 +109,159 @@ export default function ContactForm() {
         </button>
       </div>
 
-      {submittedStatus === 'sent' && (
-        <div className="mb-6 p-4 rounded bg-[#F5F4F0] dark:bg-[#111311] border border-[#315C45] dark:border-[#83A88B] text-xs space-y-1">
-          <p className="font-semibold text-[#171916] dark:text-[#F2F2EC]">Mail client triggered & text copied to clipboard.</p>
-          <p className="text-[#70736D] dark:text-[#A0A49D]">
-            If your browser did not automatically open your mail app, email directly to <code className="text-[#315C45] dark:text-[#83A88B] font-mono">{profileData.email}</code>.
-          </p>
-        </div>
-      )}
+      {/* Success Notification */}
+      <AnimatePresence>
+        {submittedStatus === 'sent' && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="mb-6 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3 text-xs text-emerald-700 dark:text-emerald-300"
+          >
+            <Check className="w-4 h-4 shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold">Email client opened & payload copied to clipboard!</p>
+              <p className="mt-0.5 text-emerald-600/90 dark:text-emerald-400/90">If your mail app didn't open automatically, you can paste the pre-copied message directly to <strong>{profileData.email}</strong>.</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        
+        {/* Name & Email Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
-            <label htmlFor="name" className="block text-[11px] font-mono uppercase tracking-wider text-[#70736D] dark:text-[#A0A49D] mb-1.5">
-              Full Name *
+          <div className="space-y-1.5">
+            <label htmlFor="contact-name" className="block text-xs font-mono uppercase tracking-wider text-[#636966] dark:text-[#9CA3AF]">
+              Your Name <span className="text-[#1F6B47] dark:text-[#34D399]">*</span>
             </label>
             <input
               type="text"
-              id="name"
+              id="contact-name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="e.g. Elena Rostova"
-              className={`w-full px-3.5 py-2.5 rounded-sm bg-[#F5F4F0] dark:bg-[#111311] border text-xs sm:text-sm text-[#171916] dark:text-[#F2F2EC] placeholder-[#70736D]/60 focus:outline-none transition-colors ${
-                errors.name ? 'border-red-500' : 'border-[#DDDED8] dark:border-[#30362F] focus:border-[#171916] dark:focus:border-[#F2F2EC]'
-              }`}
+              placeholder="e.g. Sarah Jenkins"
+              className={`w-full px-4 py-3 rounded-lg text-xs font-mono bg-[#F8F7F4] dark:bg-[#181C20] border ${
+                errors.name 
+                  ? 'border-red-500/80 focus:border-red-500' 
+                  : 'border-[#DDDED8] dark:border-[#20262B] focus:border-[#1F6B47] dark:focus:border-[#34D399]'
+              } text-[#121513] dark:text-[#F3F4F6] placeholder-[#636966]/60 dark:placeholder-[#9CA3AF]/40 outline-none transition-colors`}
             />
             {errors.name && (
-              <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <p className="text-[11px] text-red-500 flex items-center gap-1 mt-1">
                 <AlertCircle className="w-3 h-3" />
-                <span>{errors.name}</span>
+                {errors.name}
               </p>
             )}
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-[11px] font-mono uppercase tracking-wider text-[#70736D] dark:text-[#A0A49D] mb-1.5">
-              Email Address *
+          <div className="space-y-1.5">
+            <label htmlFor="contact-email" className="block text-xs font-mono uppercase tracking-wider text-[#636966] dark:text-[#9CA3AF]">
+              Email Address <span className="text-[#1F6B47] dark:text-[#34D399]">*</span>
             </label>
             <input
               type="email"
-              id="email"
+              id="contact-email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="e.g. elena@company.com"
-              className={`w-full px-3.5 py-2.5 rounded-sm bg-[#F5F4F0] dark:bg-[#111311] border text-xs sm:text-sm text-[#171916] dark:text-[#F2F2EC] placeholder-[#70736D]/60 focus:outline-none transition-colors ${
-                errors.email ? 'border-red-500' : 'border-[#DDDED8] dark:border-[#30362F] focus:border-[#171916] dark:focus:border-[#F2F2EC]'
-              }`}
+              placeholder="sarah@company.com"
+              className={`w-full px-4 py-3 rounded-lg text-xs font-mono bg-[#F8F7F4] dark:bg-[#181C20] border ${
+                errors.email 
+                  ? 'border-red-500/80 focus:border-red-500' 
+                  : 'border-[#DDDED8] dark:border-[#20262B] focus:border-[#1F6B47] dark:focus:border-[#34D399]'
+              } text-[#121513] dark:text-[#F3F4F6] placeholder-[#636966]/60 dark:placeholder-[#9CA3AF]/40 outline-none transition-colors`}
             />
             {errors.email && (
-              <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+              <p className="text-[11px] text-red-500 flex items-center gap-1 mt-1">
                 <AlertCircle className="w-3 h-3" />
-                <span>{errors.email}</span>
+                {errors.email}
               </p>
             )}
           </div>
         </div>
 
-        <div>
-          <label htmlFor="subject" className="block text-[11px] font-mono uppercase tracking-wider text-[#70736D] dark:text-[#A0A49D] mb-1.5">
-            Subject *
+        {/* Subject */}
+        <div className="space-y-1.5">
+          <label htmlFor="contact-subject" className="block text-xs font-mono uppercase tracking-wider text-[#636966] dark:text-[#9CA3AF]">
+            Inquiry Subject <span className="text-[#1F6B47] dark:text-[#34D399]">*</span>
           </label>
           <input
             type="text"
-            id="subject"
+            id="contact-subject"
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            placeholder="e.g. Full-Stack Development Project Discussion"
-            className={`w-full px-3.5 py-2.5 rounded-sm bg-[#F5F4F0] dark:bg-[#111311] border text-xs sm:text-sm text-[#171916] dark:text-[#F2F2EC] placeholder-[#70736D]/60 focus:outline-none transition-colors ${
-              errors.subject ? 'border-red-500' : 'border-[#DDDED8] dark:border-[#30362F] focus:border-[#171916] dark:focus:border-[#F2F2EC]'
-            }`}
+            placeholder="e.g. Full-Stack Developer Opportunity / CRM Consultation"
+            className={`w-full px-4 py-3 rounded-lg text-xs font-mono bg-[#F8F7F4] dark:bg-[#181C20] border ${
+              errors.subject 
+                ? 'border-red-500/80 focus:border-red-500' 
+                : 'border-[#DDDED8] dark:border-[#20262B] focus:border-[#1F6B47] dark:focus:border-[#34D399]'
+            } text-[#121513] dark:text-[#F3F4F6] placeholder-[#636966]/60 dark:placeholder-[#9CA3AF]/40 outline-none transition-colors`}
           />
           {errors.subject && (
-            <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <p className="text-[11px] text-red-500 flex items-center gap-1 mt-1">
               <AlertCircle className="w-3 h-3" />
-              <span>{errors.subject}</span>
+              {errors.subject}
             </p>
           )}
         </div>
 
-        <div>
-          <label htmlFor="message" className="block text-[11px] font-mono uppercase tracking-wider text-[#70736D] dark:text-[#A0A49D] mb-1.5">
-            Message *
+        {/* Message */}
+        <div className="space-y-1.5">
+          <label htmlFor="contact-message" className="block text-xs font-mono uppercase tracking-wider text-[#636966] dark:text-[#9CA3AF]">
+            Project Scope or Message <span className="text-[#1F6B47] dark:text-[#34D399]">*</span>
           </label>
           <textarea
-            id="message"
+            id="contact-message"
             name="message"
-            rows={4}
+            rows="5"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Project requirements, scope, or timeline..."
-            className={`w-full px-3.5 py-2.5 rounded-sm bg-[#F5F4F0] dark:bg-[#111311] border text-xs sm:text-sm text-[#171916] dark:text-[#F2F2EC] placeholder-[#70736D]/60 focus:outline-none transition-colors resize-none ${
-              errors.message ? 'border-red-500' : 'border-[#DDDED8] dark:border-[#30362F] focus:border-[#171916] dark:focus:border-[#F2F2EC]'
-            }`}
+            placeholder="Please detail your project scope, technical requirements, timeline, or team structure..."
+            className={`w-full px-4 py-3 rounded-lg text-xs font-mono bg-[#F8F7F4] dark:bg-[#181C20] border ${
+              errors.message 
+                ? 'border-red-500/80 focus:border-red-500' 
+                : 'border-[#DDDED8] dark:border-[#20262B] focus:border-[#1F6B47] dark:focus:border-[#34D399]'
+            } text-[#121513] dark:text-[#F3F4F6] placeholder-[#636966]/60 dark:placeholder-[#9CA3AF]/40 outline-none transition-colors resize-y`}
           />
           {errors.message && (
-            <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+            <p className="text-[11px] text-red-500 flex items-center gap-1 mt-1">
               <AlertCircle className="w-3 h-3" />
-              <span>{errors.message}</span>
+              {errors.message}
             </p>
           )}
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded bg-[#171916] text-[#F5F4F0] dark:bg-[#F2F2EC] dark:text-[#111311] font-semibold text-xs font-mono uppercase tracking-wider hover:opacity-90 transition-opacity disabled:opacity-50"
-        >
-          {isSubmitting ? (
-            <span>Processing...</span>
-          ) : (
-            <>
-              <span>Submit Inquiry</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </>
-          )}
-        </button>
+        {/* Submit Button */}
+        <div className="pt-2 flex items-center justify-between">
+          <Magnetic strength={12}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md bg-[#121513] text-[#F8F7F4] dark:bg-[#F3F4F6] dark:text-[#090A0C] text-xs font-mono uppercase tracking-wider font-semibold shadow-md hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(52,211,153,0.3)] transition-all disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <span>Preparing Dispatch...</span>
+                </>
+              ) : (
+                <>
+                  <span>Dispatch Message</span>
+                  <Send className="w-3.5 h-3.5" />
+                </>
+              )}
+            </button>
+          </Magnetic>
+
+          <span className="text-[11px] font-mono text-[#636966] dark:text-[#9CA3AF] hidden sm:inline">
+            Direct &bull; No middleman
+          </span>
+        </div>
+
       </form>
-    </div>
+    </SpotlightCard>
   );
 }
