@@ -9,6 +9,7 @@ import DevelopmentApproach from './sections/DevelopmentApproach';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
 import ResumeModal from './components/ResumeModal';
+import { ScrollProgress, CustomCursor, BackgroundAmbience } from './components/MotionComponents';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -16,7 +17,7 @@ export default function App() {
       const savedTheme = localStorage.getItem('najad_editorial_theme');
       if (savedTheme) return savedTheme;
     }
-    return 'light'; // Default is Light Theme as requested
+    return 'dark'; // Default to Senior Dark Theme as requested
   });
 
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
@@ -36,9 +37,18 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F4F0] text-[#171916] dark:bg-[#111311] dark:text-[#F2F2EC] font-sans antialiased selection:bg-[#315C45] selection:text-white dark:selection:bg-[#83A88B] dark:selection:text-[#111311] transition-colors duration-200">
+    <div className="min-h-screen bg-[#F8F7F4] text-[#121513] dark:bg-[#090A0C] dark:text-[#F3F4F6] font-sans antialiased selection:bg-[#1F6B47] selection:text-white dark:selection:bg-[#34D399] dark:selection:text-[#090A0C] transition-colors duration-300 relative">
       
-      {/* Editorial Navigation */}
+      {/* Top Scroll Indicator */}
+      <ScrollProgress />
+
+      {/* Subtle Custom Cursor (Desktop Only) */}
+      <CustomCursor />
+
+      {/* Ambient Lighting & Grid Layer */}
+      <BackgroundAmbience />
+
+      {/* Sticky Refined Navigation */}
       <Navbar 
         theme={theme}
         onToggleTheme={toggleTheme}
@@ -46,7 +56,7 @@ export default function App() {
       />
 
       {/* Main Sections */}
-      <main className="relative">
+      <main className="relative z-10">
         <Hero />
         <About />
         <Experience />

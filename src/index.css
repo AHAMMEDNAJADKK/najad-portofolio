@@ -4,27 +4,30 @@
 
 @layer base {
   :root {
-    --bg-page: #F5F4F0;
+    --bg-page: #F8F7F4;
     --bg-surface: #FFFFFF;
-    --text-primary: #171916;
-    --text-secondary: #70736D;
+    --text-primary: #121513;
+    --text-secondary: #636966;
     --border-line: #DDDED8;
-    --accent-color: #315C45;
+    --accent-color: #1F6B47;
+    --accent-glow: rgba(31, 107, 71, 0.15);
   }
 
   .dark {
-    --bg-page: #111311;
-    --bg-surface: #191D19;
-    --text-primary: #F2F2EC;
-    --text-secondary: #A0A49D;
-    --border-line: #30362F;
-    --accent-color: #83A88B;
+    --bg-page: #090A0C;
+    --bg-surface: #121417;
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --border-line: #20262B;
+    --accent-color: #34D399;
+    --accent-glow: rgba(52, 211, 153, 0.15);
   }
 
   html {
     scroll-behavior: smooth;
     background-color: var(--bg-page);
     color: var(--text-primary);
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -34,25 +37,29 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
   }
 
-  /* Refined Swiss Editorial Scrollbar */
+  /* Sleek Minimal Scrollbar */
   ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #DDDED8;
-    border-radius: 2px;
+    background: #D4D6CF;
+    border-radius: 9999px;
   }
   .dark ::-webkit-scrollbar-thumb {
-    background: #30362F;
+    background: #252D33;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #70736D;
+    background: #A0A59F;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #364149;
   }
 }
 
@@ -71,6 +78,36 @@
 
   .hairline-all {
     border: 1px solid var(--border-line);
+  }
+
+  /* Refined linear card top border highlight */
+  .card-top-highlight {
+    position: relative;
+  }
+  .card-top-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+  }
+
+  /* Subtle background grid pattern */
+  .bg-grid-pattern {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
+  .light .bg-grid-pattern,
+  :root:not(.dark) .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   }
 }
 
